@@ -178,7 +178,9 @@
     }).catch(function () {
       showError("Network error.");
     }).finally(function () {
-      addBtn.disabled = false;
+      if (!input.disabled) {
+        addBtn.disabled = false;
+      }
     });
   });
 
