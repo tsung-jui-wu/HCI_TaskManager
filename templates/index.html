@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--
+    CSRF token is server-generated per session.
+    app.js reads this before any mutating request.
+    An attacker on a different origin cannot read this tag (same-origin policy).
+  -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main>
+    <h1>Task Manager</h1>
+
+    <form id="add-form" autocomplete="off" novalidate>
+      <label for="task-input" class="sr-only">New task title</label>
+      <input
+        id="task-input"
+        type="text"
+        placeholder="Add a new task…"
+        maxlength="200"
+        aria-label="New task title"
+        required
+      >
+      <button type="submit" id="add-btn">Add</button>
+    </form>
+
+    <p id="error-msg" class="error" aria-live="polite" hidden></p>
+
+    <ul id="task-list" aria-label="Task list"></ul>
+
+    <p id="empty-msg" class="empty-msg">No tasks yet. Add one above.</p>
+  </main>
+
+  <!--
+    External script only — CSP blocks inline scripts.
+    app.js uses createTextNode() exclusively, never innerHTML.
+  -->
+  <script src="/static/app.js"></script>
+</body>
+</html>
