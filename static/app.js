@@ -229,7 +229,7 @@
   // Handle: rate limit — disable form with countdown
   // ------------------------------------------------------------------
   function handleRateLimit() {
-    const WAIT = 30;
+    const WAIT = 15;
     addBtn.disabled = true;
     input.disabled = true;
     let remaining = WAIT;
